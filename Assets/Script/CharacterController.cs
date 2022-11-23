@@ -11,6 +11,8 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     Transform cameraArm;
 
+    public GameObject Human;
+
     public float moveSpeed = 3f;
     Animator animator;
 
@@ -23,6 +25,16 @@ public class CharacterController : MonoBehaviour
     {
         LookAround();
         Move();
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Vector3.Distance(this.transform.position, Human.transform.position) <=1f)
+            {
+                Debug.Log("attack");
+            }
+  
+    }
+
     }
 
     void Move()
