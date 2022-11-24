@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 //https://wergia.tistory.com/230
 public class CharacterController : MonoBehaviour
@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     Transform cameraArm;
 
     public GameObject Human;
+    public GameObject f_Alarm;
 
     public float moveSpeed = 3f;
     Animator animator;
@@ -25,21 +26,38 @@ public class CharacterController : MonoBehaviour
     {
         LookAround();
         Move();
-
-        if (Input.GetMouseButtonDown(0))
+        float distance = Vector3.Distance(this.transform.position, Human.transform.position);
+        if(distance <1f)
         {
-            if (Vector3.Distance(this.transform.position, Human.transform.position) <=1f)
+            f_Alarm.SetActive(true);
+            if (Input.GetKey(KeyCode.F))
             {
                 Debug.Log("attack");
             }
-  
-    }
+        }
+        else
+        {
+            f_Alarm.SetActive(false);
+        }
+        //if (Input.GetKey(KeyCode.F))
+        //{
+        //    if (distance <= 1f)
+        //    {
+                
+        //        f_Alarm.SetActive(true);
+        //    }
+        //    else
+        //    {
+        //        f_Alarm.SetActive(false);
+        //    }
+
+        //}
 
     }
 
     void Move()
     {
-        float height = 0f;
+        //float height = 0f;
         if(Input.GetKey(KeyCode.E))
         {
             transform.position += new Vector3(0,1,0).normalized *Time.deltaTime*moveSpeed;
@@ -59,7 +77,7 @@ public class CharacterController : MonoBehaviour
             Vector3 lookRight = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
             //Vector3 goHeight = new Vector3(0f, height, 0f).normalized;
             Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x;
-            Vector3 goHeight = new Vector3(0, height, 0);
+            //Vector3 goHeight = new Vector3(0, height, 0);
 
             
             characterBody.forward = lookForward;
