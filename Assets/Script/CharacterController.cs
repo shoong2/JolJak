@@ -11,47 +11,60 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     Transform cameraArm;
 
-    public GameObject Human;
+    GameObject[] Human;
     public GameObject f_Alarm;
 
     public float moveSpeed = 3f;
     Animator animator;
 
+    Rigidbody playerRid;
+    float distance;
+    GameObject colObject;
     private void Start()
     {
         animator = characterBody.GetComponent<Animator>();
+        Human = GameObject.FindGameObjectsWithTag("Human");
+        playerRid = GetComponent<Rigidbody>();
+        colObject = Human[0];
     }
 
     private void Update()
     {
+        playerRid.velocity = Vector3.zero;
         LookAround();
         Move();
-        float distance = Vector3.Distance(this.transform.position, Human.transform.position);
-        if(distance <1f)
-        {
-            f_Alarm.SetActive(true);
-            if (Input.GetKey(KeyCode.F))
-            {
-                Debug.Log("attack");
-            }
-        }
-        else
-        {
-            f_Alarm.SetActive(false);
-        }
-        //if (Input.GetKey(KeyCode.F))
-        //{
-        //    if (distance <= 1f)
-        //    {
-                
-        //        f_Alarm.SetActive(true);
-        //    }
-        //    else
-        //    {
-        //        f_Alarm.SetActive(false);
-        //    }
 
-        //}
+
+        foreach (GameObject mob in Human)
+        {
+            if (Vector3.Distance(this.transform.position, mob.transform.position) <= 2)
+            {
+                colObject = mob;
+                f_Alarm.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    //if(transform.position.z > colObject.transform.position.z)
+                    //{
+                    //    distance = colObject.transform.position.z - transform.position.z;
+                    //}
+
+                    distance = colObject.transform.position.z - transform.position.z;
+                    //transform.position += new Vector3(0, 0, distance);
+                    transform.Translate(new Vector3(0, 0, distance));
+                    Debug.Log("attack");
+
+                }
+             
+            }
+
+            if (Vector3.Distance(this.transform.position, colObject.transform.position) > 2)
+            {
+                f_Alarm.SetActive(false);
+            }
+
+        }
+
 
     }
 
@@ -103,4 +116,12 @@ public class CharacterController : MonoBehaviour
         }
         cameraArm.rotation = Quaternion.Euler(x, camAngle.y +mouseDelta.x, camAngle.z);
     }
+
+
+    void Attack()
+    {
+
+    }
+
+
 }
