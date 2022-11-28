@@ -44,14 +44,14 @@ public class CharacterController : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    //if(transform.position.z > colObject.transform.position.z)
-                    //{
-                    //    distance = colObject.transform.position.z - transform.position.z;
-                    //}
+                    
+                     distance = colObject.transform.position.x - transform.position.x;
 
-                    distance = colObject.transform.position.z - transform.position.z;
-                    //transform.position += new Vector3(0, 0, distance);
-                    transform.Translate(new Vector3(0, 0, distance));
+
+                    //distance = colObject.transform.position.z - transform.position.z;
+                    transform.position += new Vector3(distance, 0, 0);
+                    //transform.Translate(new Vector3(distance, 0, 0));
+                    //transform.parent = mob.transform;
                     Debug.Log("attack");
 
                 }
