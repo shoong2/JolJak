@@ -14,16 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
+<<<<<<< HEAD
+    x: 8
+=======
     x: 0
+>>>>>>> parent of 5d6dc27 (notebook)
     y: 43
     width: 1920
     height: 997
   m_ShowMode: 4
+<<<<<<< HEAD
+  m_Title: Project
+=======
   m_Title: Game
+>>>>>>> parent of 5d6dc27 (notebook)
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 1
+  m_Maximized: 0
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,7 +127,11 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 18
+<<<<<<< HEAD
+  controlID: 20
+=======
+  controlID: 110
+>>>>>>> parent of 5d6dc27 (notebook)
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,12 +151,20 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1512
+=======
+    width: 1510
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 947
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 54
+<<<<<<< HEAD
+  controlID: 21
+=======
+  controlID: 83
+>>>>>>> parent of 5d6dc27 (notebook)
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,12 +184,20 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1512
+=======
+    width: 1510
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 498
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 55
+<<<<<<< HEAD
+  controlID: 22
+=======
+  controlID: 84
+>>>>>>> parent of 5d6dc27 (notebook)
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -187,7 +215,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 430
+=======
+    width: 429
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 498
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
@@ -206,24 +238,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 430
     y: 0
     width: 1082
     height: 498
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 15}
+=======
+    x: 429
+    y: 0
+    width: 1081
+    height: 498
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 17}
+>>>>>>> parent of 5d6dc27 (notebook)
   m_Panes:
   - {fileID: 17}
   - {fileID: 15}
   - {fileID: 13}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,17 +283,25 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 498
+<<<<<<< HEAD
     width: 1512
     height: 449
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
   m_ActualView: {fileID: 18}
+=======
+    width: 1510
+    height: 449
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 19}
+>>>>>>> parent of 5d6dc27 (notebook)
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 14}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -267,9 +317,15 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1512
     y: 0
     width: 408
+=======
+    x: 1510
+    y: 0
+    width: 410
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 947
   m_MinSize: {x: 276, y: 71}
   m_MaxSize: {x: 4001, y: 4021}
@@ -349,6 +405,7 @@ MonoBehaviour:
     - {fileID: 1107352250216088808, guid: cd29d18a40f3fb648928275cd121fb86, type: 2}
     - {fileID: 1107688202552985488, guid: 75d3a58b3d7879f41926561701407a48, type: 2}
     - {fileID: -1283072097280250794, guid: 460eff4791c0189419d9f0298d4b5405, type: 2}
+    - {fileID: 7107473287274198740, guid: e2cea245ac324be48a4e097147497239, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.8730366
       e01: 0
@@ -542,6 +599,22 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 0.7021053
+      e01: 0
+      e02: 0
+      e03: -20.105286
+      e10: 0
+      e11: 0.7021053
+      e12: 0
+      e13: 159.32104
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 9100000, guid: 460eff4791c0189419d9f0298d4b5405, type: 2}
   m_BreadCrumbs:
@@ -588,7 +661,11 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -203980
+<<<<<<< HEAD
+  m_LastSelectedObjectID: 59426
+=======
+  m_LastSelectedObjectID: -5714
+>>>>>>> parent of 5d6dc27 (notebook)
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -609,10 +686,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 430
+<<<<<<< HEAD
+    x: 438
     y: 73
     width: 1080
     height: 477
+=======
+    x: 433
+    y: 81
+    width: 1070
+    height: 469
+>>>>>>> parent of 5d6dc27 (notebook)
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -623,7 +707,11 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 0, y: 0}
+<<<<<<< HEAD
+      snapOffsetDelta: {x: -101, y: -1}
+=======
       snapOffsetDelta: {x: -101, y: -26}
+>>>>>>> parent of 5d6dc27 (notebook)
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -656,7 +744,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 1
       id: unity-search-toolbar
       index: 1
@@ -667,7 +755,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: unity-transform-toolbar
       index: 0
@@ -689,7 +777,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Light Settings
       index: 0
@@ -700,7 +788,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Camera
       index: 1
@@ -711,7 +799,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Cloth Constraints
       index: 2
@@ -722,7 +810,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Cloth Collisions
       index: 3
@@ -733,7 +821,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Navmesh Display
       index: 4
@@ -744,7 +832,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Agent Display
       index: 5
@@ -755,7 +843,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Obstacle Display
       index: 6
@@ -766,7 +854,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Occlusion Culling
       index: 7
@@ -777,7 +865,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Physics Debugger
       index: 8
@@ -788,7 +876,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Scene Visibility
       index: 9
@@ -799,14 +887,18 @@ MonoBehaviour:
       collapsed: 0
       displayed: 0
       snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 25}
       snapCorner: 0
       id: Scene View/Particles
       index: 10
       layout: 4
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
+<<<<<<< HEAD
+  m_OverrideSceneCullingMask: 0
+=======
   m_OverrideSceneCullingMask: 6917529027641081856
+>>>>>>> parent of 5d6dc27 (notebook)
   m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 0
@@ -814,9 +906,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 455.14655, y: -158.74974, z: 571.2002}
+<<<<<<< HEAD
+    m_Target: {x: -3.747074, y: 1.6515005, z: -3.508762}
     speed: 2
-    m_Value: {x: 455.14655, y: -158.74974, z: 571.2002}
+    m_Value: {x: -3.747074, y: 1.6515005, z: -3.508762}
+=======
+    m_Target: {x: 960, y: 540, z: 0}
+    speed: 2
+    m_Value: {x: 960, y: 540, z: 0}
+>>>>>>> parent of 5d6dc27 (notebook)
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -863,13 +961,23 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.113251746, y: 0.326522, z: -0.04111755, w: 0.93714035}
+<<<<<<< HEAD
+    m_Target: {x: -0.01618983, y: 0.94223595, z: -0.046025362, w: -0.33139333}
     speed: 2
-    m_Value: {x: 0.11328771, y: 0.32662567, z: -0.041130606, w: 0.93743795}
+    m_Value: {x: -0.016189745, y: 0.942231, z: -0.04602512, w: -0.3313916}
   m_Size:
-    m_Target: 375.53055
+    m_Target: 5.3918962
     speed: 2
-    m_Value: 375.53055
+    m_Value: 5.3918962
+=======
+    m_Target: {x: -0.13460548, y: 0.10758156, z: -0.014272629, w: -0.98469615}
+    speed: 2
+    m_Value: {x: -0.13460548, y: 0.10758156, z: -0.01427263, w: -0.98469615}
+  m_Size:
+    m_Target: 1101.4536
+    speed: 2
+    m_Value: 1101.4536
+>>>>>>> parent of 5d6dc27 (notebook)
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -914,9 +1022,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+<<<<<<< HEAD
+    x: 8
     y: 73
     width: 429
+=======
+    x: 0
+    y: 73
+    width: 428
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 477
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -925,23 +1039,29 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 820f0600
-      m_LastClickedID: 397186
-      m_ExpandedIDs: 4057fbff2a67fbff007afbffd68cfbffa89ffbff8e0dfcff581afcff727afcff767afcff7a7afcff827afcff867afcff8a7afcff927afcff9e7afcffa27afcffaa7afcffae7afcffb67afcffba7afcffc27afcffc67afcffce7afcffd27afcffd67afcffda7afcffde7afcffe27afcffee7afcfff27afcfffa7afcfffe7afcff067bfcff0a7bfcff127bfcff167bfcff1e7bfcff227bfcff267bfcff2a7bfcff2e7bfcff327bfcff367bfcff3a7bfcff3e7bfcff427bfcff467bfcff647dfcff687dfcff6c7dfcff747dfcff787dfcff7c7dfcff847dfcff907dfcff947dfcff9c7dfcffa07dfcffa87dfcffac7dfcffb47dfcffb87dfcffc07dfcffc47dfcffc87dfcffcc7dfcffd07dfcffd47dfcffe07dfcffe47dfcffec7dfcfff07dfcfff87dfcfffc7dfcff047efcff087efcff107efcff147efcff187efcff1c7efcff207efcff247efcff287efcff2c7efcff307efcff347efcff387efcff827ffcff927ffcff9a7ffcff9e7ffcffa27ffcffa67ffcffaa7ffcffae7ffcffb27ffcffb67ffcffbe7ffcffc27ffcffc67ffcffca7ffcffce7ffcffd27ffcffd67ffcffde7ffcffe27ffcffe67ffcffea7ffcffee7ffcfff27ffcfff67ffcfffa7ffcff0280fcff0680fcff0a80fcff0e80fcff1280fcff1680fcff1a80fcff6a80fcff6e80fcff7680fcff7a80fcff7e80fcff8280fcff8680fcff8a80fcff8e80fcff9680fcff9a80fcff9e80fcffa280fcffa680fcffaa80fcffae80fcffb680fcffba80fcffbe80fcffc280fcffca80fcffce80fcffd280fcffd680fcffda80fcff4282fcff4682fcff4a82fcff5282fcff5682fcff5a82fcff6282fcff6e82fcff7282fcff7a82fcff7e82fcff8682fcff8a82fcff9282fcff9682fcff9e82fcffa282fcffa682fcffaa82fcffae82fcffb282fcffbe82fcffc282fcffca82fcffce82fcffd682fcffda82fcffe282fcffe682fcffee82fcfff282fcfff682fcfffa82fcfffe82fcff0283fcff0683fcff0a83fcff0e83fcff1283fcff1683fcffa283fcffa683fcffaa83fcffb283fcffb683fcffba83fcffc283fcffce83fcffd283fcffda83fcffde83fcffe683fcffea83fcfff283fcfff683fcfffe83fcff0284fcff0684fcff0a84fcff0e84fcff1284fcff1e84fcff2284fcff2a84fcff2e84fcff3684fcff3a84fcff4284fcff4684fcff4e84fcff5284fcff5684fcff5a84fcff5e84fcff6284fcff6684fcff6a84fcff6e84fcff7284fcff7684fcffc687fcffca87fcffce87fcffd687fcffda87fcffde87fcffe687fcfff287fcfff687fcfffe87fcff0288fcff0a88fcff0e88fcff1688fcff1a88fcff2288fcff2688fcff2a88fcff2e88fcff3288fcff3688fcff4288fcff4688fcff4e88fcff5288fcff5a88fcff5e88fcff6688fcff6a88fcff7288fcff7688fcff7a88fcff7e88fcff8288fcff8688fcff8a88fcff8e88fcff9288fcff9688fcff9a88fcffc48afcffce96fcffa6c0fcffc6ccfcffbc0efeffa41bfeffd621feff4c9dfeff42acfeff8ecffeffaadcfeff4ae7feff8cfafefffe0fffffee1bffff1288fffff6a4ffff8cceffff36fbffff465c0000585c000004490300206403007ee00500
+<<<<<<< HEAD
+      m_SelectedIDs: 22e80000
+      m_LastClickedID: 59426
+      m_ExpandedIDs: 60c9ffff22e80000
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 36fbffff
+>>>>>>> parent of 5d6dc27 (notebook)
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Player
-        m_OriginalName: Player
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 266332
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -971,9 +1091,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 430
     y: 73
     width: 1080
+=======
+    x: 429
+    y: 73
+    width: 1079
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 477
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1010,9 +1136,9 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1021,16 +1147,24 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 1080
       height: 456
     m_Scale: {x: 0.42222223, y: 0.42222223}
     m_Translation: {x: 540, y: 228}
+=======
+      width: 1079
+      height: 456
+    m_Scale: {x: 0.4416667, y: 0.44166663}
+    m_Translation: {x: 539.5, y: 228}
+>>>>>>> parent of 5d6dc27 (notebook)
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -1278.9474
       y: -540
       width: 2557.8948
@@ -1038,6 +1172,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 0.42222223
   m_LastWindowPixelSize: {x: 1080, y: 477}
+=======
+      x: -1221.5094
+      y: -516.22644
+      width: 2443.0188
+      height: 1032.4529
+    m_MinimalGUI: 1
+  m_defaultScale: 0.44166666
+  m_LastWindowPixelSize: {x: 1079, y: 477}
+>>>>>>> parent of 5d6dc27 (notebook)
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
@@ -1063,9 +1206,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
+<<<<<<< HEAD
+    x: 8
     y: 571
     width: 1511
+=======
+    x: 0
+    y: 571
+    width: 1509
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 428
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1084,22 +1233,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+<<<<<<< HEAD
+    - Assets/Adventure_Character/Prefabs
+=======
+    - Assets/UI
+>>>>>>> parent of 5d6dc27 (notebook)
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+<<<<<<< HEAD
+  - Assets/Adventure_Character/Prefabs
+=======
+  - Assets/UI
+>>>>>>> parent of 5d6dc27 (notebook)
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Eon\Documents\GitHub\JolJak
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9a3d0300
-    m_LastClickedID: 212378
-    m_ExpandedIDs: 0000000036600000386000003a600000983d0300c2600300f4f803001ef9030000ca9a3b
+<<<<<<< HEAD
+    m_SelectedIDs: 16e10000
+    m_LastClickedID: 57622
+    m_ExpandedIDs: 000000003268000034680000366800003a6800003c6800003e6800007c68000000ca9a3b
+=======
+    m_SelectedIDs: 28600000
+    m_LastClickedID: 24616
+    m_ExpandedIDs: 0000000036600000386000003a600000
+>>>>>>> parent of 5d6dc27 (notebook)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1127,7 +1290,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
+    m_ExpandedIDs: 00000000326800003468000036680000386800003a6800003c6800003e680000
+=======
     m_ExpandedIDs: 0000000036600000386000003a600000
+>>>>>>> parent of 5d6dc27 (notebook)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1152,9 +1319,15 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
+=======
+    m_SelectedInstanceIDs: aee9ffff
+    m_LastClickedInstanceID: -5714
     m_HadKeyboardFocusLastEvent: 1
+>>>>>>> parent of 5d6dc27 (notebook)
     m_ExpandedInstanceIDs: c623000012700000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1205,7 +1378,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 571
+<<<<<<< HEAD
     width: 1511
+=======
+    width: 1509
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 428
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -1231,9 +1408,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1512
+<<<<<<< HEAD
+    x: 1520
     y: 73
     width: 407
+=======
+    x: 1510
+    y: 73
+    width: 409
+>>>>>>> parent of 5d6dc27 (notebook)
     height: 926
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:

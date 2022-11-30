@@ -37,7 +37,23 @@ public class MoveHuman : MonoBehaviour
         StartCoroutine(RandomState());
     }
 
+    private void Update()
+    {
+        //Debug.Log(nav.destination);
+        //if(!nav.pathPending)
+        //{
+        //    if (nav.remainingDistance <= nav.stoppingDistance)
+        //    {
+        //        if(!nav.hasPath||nav.velocity.sqrMagnitude ==0)
+        //        {
+        //            currentState = humanState.idle;
+        //            StartCoroutine(Move());
+        //        }
 
+        //    }
+        //}
+
+    }
 
     IEnumerator Move()
     {
@@ -45,6 +61,7 @@ public class MoveHuman : MonoBehaviour
         y = 0.115f;
         z = UnityEngine.Random.Range(0.6f, 100f);
         pos = new Vector3(x, y, z);
+        Debug.Log(pos);
         switch (currentState)
         {
             case humanState.idle:
