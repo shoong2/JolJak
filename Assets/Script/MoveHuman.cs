@@ -8,10 +8,10 @@ using UnityEditor;
 public class MoveHuman : MonoBehaviour
 {
     float x, y, z, wait;
-    public float angleRange = 30f;
-    public float radius = 3f;
+    public float angleRange = 50f;
+    public float radius = 10f;
     bool isCollision = false;
-    bool isTrace = false;
+    bool canTrace = true;
 
     Vector3 pos;
 
@@ -30,7 +30,7 @@ public class MoveHuman : MonoBehaviour
         idle,
         walk,
         run,
-        trace
+        //trace
     };
 
     public humanState currentState = humanState.idle;
@@ -51,32 +51,40 @@ public class MoveHuman : MonoBehaviour
 
     private void Update()
     {
-        if(isTrace == true)
+ 
+        Vector3 interV = moki.transform.position - transform.position;
+
+        if (interV.magnitude <= radius)
         {
-            Vector3 interV = moki.transform.position - transform.position;
+            //사람으로부터 모기의 벡터와 사람 정면벡터를 내적
+            float dot = Vector3.Dot(interV.normalized, transform.forward);
+            //cos역으로 각도 구하기(세타)
+            float theta = Mathf.Acos(dot);
+            //degree로 변환
+            float degree = Mathf.Rad2Deg * theta;
 
-            if (interV.magnitude <= radius)
+            if (degree <= angleRange / 2f)
             {
-                //사람으로부터 모기의 벡터와 사람 정면벡터를 내적
-                float dot = Vector3.Dot(interV.normalized, transform.forward);
-                //cos역으로 각도 구하기(세타)
-                float theta = Mathf.Acos(dot);
-                //degree로 변환
-                float degree = Mathf.Rad2Deg * theta;
-
-                if (degree <= angleRange / 2f)
-                    isCollision = true;
-                else
+                StopCoroutine(RandomState());
+                isCollision = true;
                 {
-                    isCollision = false;
-                    StartCoroutine(RandomState());
+                    anim.SetBool("Walk", true);
+                    anim.SetBool("Run", false);
+                    nav.destination = moki.transform.position;
+                    nav.speed = 2f;
                 }
             }
 
             else
+            {
                 isCollision = false;
 
-            
+            }
+        }
+
+        else
+        {
+            isCollision = false;     
         }
 
     }
@@ -87,7 +95,6 @@ public class MoveHuman : MonoBehaviour
         y = 0.115f;
         z = UnityEngine.Random.Range(0.6f, 100f);
         pos = new Vector3(x, y, z);
-        Debug.Log(pos);
         switch (currentState)
         {
             case humanState.idle:
@@ -109,22 +116,22 @@ public class MoveHuman : MonoBehaviour
                 nav.destination = pos;
                 nav.speed = 3f;
                 break;
-            case humanState.trace:
-                nav.Resume();
-                //if(Vector3.Distance(this.transform.position, moki.transform.position) <10f)
-                //{
-                //    anim.SetBool("Walk", true);
-                //    anim.SetBool("Run", false);
-                //    nav.destination = moki.transform.position;
-                //    nav.speed = 1f;
-                //}
-                //else
-                //{
-                //    StartCoroutine(RandomState());
-                //}
-                //break;
-                isTrace = true;
-                break;
+            //case humanState.trace:
+            //    nav.Resume();
+            //    //if(Vector3.Distance(this.transform.position, moki.transform.position) <10f)
+            //    //{
+            //    //    anim.SetBool("Walk", true);
+            //    //    anim.SetBool("Run", false);
+            //    //    nav.destination = moki.transform.position;
+            //    //    nav.speed = 1f;
+            //    //}
+            //    //else
+            //    //{
+            //    //    StartCoroutine(RandomState());
+            //    //}
+            //    //break;
+            //    isTrace = true;
+            //    break;
         }
         //wait = UnityEngine.Random.Range(6f, 15f);
 
@@ -134,9 +141,14 @@ public class MoveHuman : MonoBehaviour
 
     IEnumerator RandomState()
     {
-        currentState = (humanState)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(humanState)).Length));
-        StartCoroutine(Move());
+        if(!isCollision) //추적이 아닐때만 랜덤 위치로 뛰거나 움직이거나 멈추기
+        {
+            currentState = (humanState)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(humanState)).Length));
+            StartCoroutine(Move());
+        }
+        
         yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 10f));
+        //isTrace = false;
         StartCoroutine(RandomState());
     }
 

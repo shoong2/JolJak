@@ -1430,6 +1430,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5fd21303ad0f304e90dbb651b52d137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angleRange: 80
+  radius: 10
+  currentState: 0
 --- !u!195 &769082130476106563
 NavMeshAgent:
   m_ObjectHideFlags: 0
