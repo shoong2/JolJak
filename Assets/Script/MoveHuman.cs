@@ -12,8 +12,9 @@ public class MoveHuman : MonoBehaviour
     Transform humnaTransform;
     NavMeshAgent nav;
     Animator anim;
+    GameObject moki;
 
-    enum humanState
+    public enum humanState
     {
         idle,
         walk,
@@ -21,13 +22,13 @@ public class MoveHuman : MonoBehaviour
         trace
     };
 
-    humanState currentState = humanState.idle;
+    public humanState currentState = humanState.idle;
     private void Start()
     {
         humnaTransform = gameObject.GetComponent<Transform>();
         nav = gameObject.GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
-
+        moki = GameObject.FindWithTag("Player");
 
         //x = Random.Range(0.6f, 60f);
         //y = 0.115f;
@@ -85,10 +86,17 @@ public class MoveHuman : MonoBehaviour
                 break;
             case humanState.trace:
                 nav.Resume();
-                anim.SetBool("Walk", true);
-                anim.SetBool("Run", false);
-                nav.destination = pos;
-                nav.speed = 1f;
+                if(Vector3.Distance(this.transform.position, moki.transform.position) <10f)
+                {
+                    anim.SetBool("Walk", true);
+                    anim.SetBool("Run", false);
+                    nav.destination = moki.transform.position;
+                    nav.speed = 1f;
+                }
+                else
+                {
+                    StartCoroutine(RandomState());
+                }
                 break;
         }
         //wait = UnityEngine.Random.Range(6f, 15f);
