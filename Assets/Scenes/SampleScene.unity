@@ -11429,6 +11429,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 429508, guid: 9c74caa742791864f9c678287121e6c9, type: 3}
   m_PrefabInstance: {fileID: 1211509371}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1061161052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1013346830172338907, guid: 78544ab460daccc478c41a190b13845a, type: 3}
+  m_PrefabInstance: {fileID: 1222854663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1063429484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12253,6 +12258,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2478017696238477707, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
+      propertyPath: mokiRigd
+      value: 
+      objectReference: {fileID: 1935967963}
     - target: {fileID: 2858590657992640146, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
       propertyPath: m_Name
       value: Man_01 (1)
@@ -13300,6 +13309,10 @@ PrefabInstance:
     - target: {fileID: 1013346830172338907, guid: 78544ab460daccc478c41a190b13845a, type: 3}
       propertyPath: m_Name
       value: Mosquito
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013346830172338907, guid: 78544ab460daccc478c41a190b13845a, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1501310428556153486, guid: 78544ab460daccc478c41a190b13845a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14350,6 +14363,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2478017696238477707, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
+      propertyPath: mokiRigd
+      value: 
+      objectReference: {fileID: 1935967963}
     - target: {fileID: 2858590657992640146, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
       propertyPath: m_Name
       value: Man_01 (2)
@@ -14986,6 +15003,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2478017696238477707, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
+      propertyPath: mokiRigd
+      value: 
+      objectReference: {fileID: 1935967963}
     - target: {fileID: 2858590657992640146, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
       propertyPath: m_Name
       value: Man_01 (3)
@@ -18219,6 +18240,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 386167442398830689, guid: 78544ab460daccc478c41a190b13845a, type: 3}
   m_PrefabInstance: {fileID: 1222854663}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1668788226
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061161052}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15, y: 0.18, z: 0.22}
+  m_Center: {x: 0, y: 0.12, z: 0.03}
 --- !u!1001 &1674852568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18861,6 +18895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2478017696238477707, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
+      propertyPath: mokiRigd
+      value: 
+      objectReference: {fileID: 1935967963}
     - target: {fileID: 2858590657992640146, guid: ebc4580c7ed532b4cb07171aed640d52, type: 3}
       propertyPath: m_Name
       value: Man_01
@@ -21040,7 +21078,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1935967961}
   - component: {fileID: 1935967960}
-  - component: {fileID: 1935967962}
   - component: {fileID: 1935967963}
   m_Layer: 0
   m_Name: Player
@@ -21082,19 +21119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1935967962
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935967959}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.34, y: 0.27, z: 0.16}
-  m_Center: {x: 0, y: 0.68, z: 0.03}
 --- !u!54 &1935967963
 Rigidbody:
   m_ObjectHideFlags: 0

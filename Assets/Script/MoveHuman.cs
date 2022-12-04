@@ -12,6 +12,7 @@ public class MoveHuman : MonoBehaviour
     public float radius = 10f;
     bool isCollision = false;
     bool canTrace = true;
+    bool canClap = true;
 
     Vector3 pos;
 
@@ -63,17 +64,34 @@ public class MoveHuman : MonoBehaviour
             //degree·Î º¯È¯
             float degree = Mathf.Rad2Deg * theta;
 
+
             if (degree <= angleRange / 2f)
             {
-                StopCoroutine(RandomState());
-                isCollision = true;
+
+                if (interV.magnitude <= 3)
                 {
-                    anim.SetBool("Walk", true);
-                    anim.SetBool("Run", false);
-                    nav.destination = moki.transform.position;
-                    nav.speed = 2f;
+                    Debug.Log("hit");
+                    if (canClap)
+                    {
+                        anim.SetTrigger("Clap");
+                        canClap = false;
+                    }
+           
                 }
-            }
+                else
+                    canClap = true;
+                //StopCoroutine(RandomState());
+                StopCoroutine(Move());
+                isCollision = true;
+                nav.Resume();
+                anim.SetBool("Walk", true);
+                anim.SetBool("Run", false);
+                nav.destination = moki.transform.position;
+                nav.speed = 2f;
+
+
+
+            }          
 
             else
             {
@@ -87,7 +105,23 @@ public class MoveHuman : MonoBehaviour
             isCollision = false;     
         }
 
+        //Debug.Log(Vector3.Distance(transform.position, moki.transform.position));
+        //if (Vector3.Distance(transform.position, moki.transform.position) <= 3f)
+        //{
+        //    Debug.Log("hit");
+        //    if (canClap)
+        //    {
+        //        anim.SetTrigger("Clap");
+        //        canClap = false;
+        //    }
+
+
+        //}
+        //else
+        //    canClap = true;
     }
+
+
 
     IEnumerator Move()
     {
