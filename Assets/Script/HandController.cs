@@ -16,7 +16,8 @@ public class HandController : MonoBehaviour
             //mokiRigd.freezeRotation = false;
             //mokiRigd.constraints = ~RigidbodyConstraints.FreezePositionY;
             mokiRigd.constraints = RigidbodyConstraints.None;
-            mokiRigd.useGravity = true;          
+            mokiRigd.useGravity = true;
+            mokiRigd.gameObject.transform.GetChild(0).GetComponent<Animator>().speed = 0f;
             //mokiRigd.mass = 10f;
         }
     }
