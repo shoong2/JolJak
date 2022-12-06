@@ -52,7 +52,7 @@ public class CharacterController : MonoBehaviour
                     distance = colObject.transform.position.z - transform.position.z;
                     //transform.position += new Vector3(0, 0, distance);
                     //transform.Translate(new Vector3(0, 0, distance));
-                    animator.SetBool("Attack", true);
+                    animator.SetTrigger("Attack");
                     Debug.Log("attack");
 
                 }
