@@ -10,6 +10,8 @@ public class CharacterController : MonoBehaviour
     Transform characterBody;
     [SerializeField]
     Transform cameraArm;
+    [SerializeField]
+    GameObject mokiOrigin;
 
     GameObject[] Human;
     public GameObject f_Alarm;
@@ -20,12 +22,15 @@ public class CharacterController : MonoBehaviour
     Rigidbody playerRid;
     float distance;
     GameObject colObject;
+
+    //RaycastHit hit;
     private void Start()
     {
         animator = characterBody.GetComponent<Animator>();
         Human = GameObject.FindGameObjectsWithTag("Human");
         playerRid = GetComponent<Rigidbody>();
         colObject = Human[0];
+       
     }
 
     private void Update()
@@ -34,37 +39,39 @@ public class CharacterController : MonoBehaviour
         LookAround();
         Move();
 
+        
 
-        foreach (GameObject mob in Human)
-        {
-            if (Vector3.Distance(this.transform.position, mob.transform.position) <= 2)
-            {
-                colObject = mob;
-                f_Alarm.SetActive(true);
+        
+        //foreach (GameObject mob in Human)
+        //{
+        //    if (Vector3.Distance(this.transform.position, mob.transform.position) <= 2)
+        //    {
+        //        colObject = mob;
+        //        f_Alarm.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    //if(transform.position.z > colObject.transform.position.z)
-                    //{
-                    //    distance = colObject.transform.position.z - transform.position.z;
-                    //}
+        //        if (Input.GetKeyDown(KeyCode.F))
+        //        {
+        //            //if(transform.position.z > colObject.transform.position.z)
+        //            //{
+        //            //    distance = colObject.transform.position.z - transform.position.z;
+        //            //}
 
-                    distance = colObject.transform.position.z - transform.position.z;
-                    //transform.position += new Vector3(0, 0, distance);
-                    //transform.Translate(new Vector3(0, 0, distance));
-                    animator.SetTrigger("Attack");
-                    Debug.Log("attack");
+        //            distance = colObject.transform.position.z - transform.position.z;
+        //            //transform.position += new Vector3(0, 0, distance);
+        //            //transform.Translate(new Vector3(0, 0, distance));
+        //            animator.SetTrigger("Attack");
+        //            Debug.Log("attack");
 
-                }
+        //        }
              
-            }
+        //    }
 
-            if (Vector3.Distance(this.transform.position, colObject.transform.position) > 2)
-            {
-                f_Alarm.SetActive(false);
-            }
+        //    if (Vector3.Distance(this.transform.position, colObject.transform.position) > 2)
+        //    {
+        //        f_Alarm.SetActive(false);
+        //    }
 
-        }
+        //}
 
 
     }
