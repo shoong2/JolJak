@@ -5,8 +5,9 @@ using UnityEngine;
 public class RaycastController : MonoBehaviour
 {
     RaycastHit[] hitInfo;
+    RaycastHit ray;
     public float rayDistance;
-
+    public LayerMask layerMask;
     public GameObject f_Alarm;
 
 
@@ -21,46 +22,63 @@ public class RaycastController : MonoBehaviour
 
     void Update()
     {
-        if(!clickF)
-            hitInfo = Physics.RaycastAll(transform.position, transform.forward, rayDistance);
+        //if(!clickF)
+        //    hitInfo = Physics.RaycastAll(transform.position, transform.forward, rayDistance);
         
-
-        for(int i =0; i< hitInfo.Length; i++)
+        if(Physics.Raycast(transform.position, transform.forward,out ray, rayDistance, layerMask))
         {
-            RaycastHit hit = hitInfo[i];
+            //if(ray.collider.tag=="Human")
+            //{
+            //    Debug.Log("hit human");
+            //    Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
+            //}
 
-            if (hit.collider.tag == "Human")
-            {
-                clickF = true;
-                Debug.Log("raycast");
-                Debug.Log(clickF);
-                f_Alarm.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    f_Alarm.SetActive(false);
-                    //if(transform.position.z > colObject.transform.position.z)
-                    //{
-                    //    distance = colObject.transform.position.z - transform.position.z;
-                    //}
-
-                    //distance = colObject.transform.position.z - transform.position.z;
-                    //transform.position += new Vector3(0, 0, distance);
-                    //transform.Translate(new Vector3(0, 0, distance));
-                    mokiAnim.SetTrigger("Attack");
-                    Debug.Log("attack");
-
-
-
-                }
-
-            }
-            else
-            {
-                f_Alarm.SetActive(false);
-                clickF = false;
-            }
-                
+            Debug.Log("hit human");
+            Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
         }
-        Debug.DrawRay(transform.position, transform.forward*rayDistance, Color.red);
+        else
+        {
+            Debug.Log("nothing");
+            Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.green);
+        }
+        //for(int i =0; i< hitInfo.Length; i++)
+        //{
+        //    Debug.Log("Check");
+        //    RaycastHit hit = hitInfo[i];
+        //    Debug.Log(hitInfo[i]);
+        //    if (hit.collider.tag == "Human")
+        //    {
+        //        Debug.Log("raycast");
+        //        Debug.Log(clickF);
+        //        f_Alarm.SetActive(true);
+        //        if (Input.GetKeyDown(KeyCode.F))
+        //        {
+        //            clickF = true;
+        //            f_Alarm.SetActive(false);
+        //            //if(transform.position.z > colObject.transform.position.z)
+        //            //{
+        //            //    distance = colObject.transform.position.z - transform.position.z;
+        //            //}
+
+        //            //distance = colObject.transform.position.z - transform.position.z;
+        //            //transform.position += new Vector3(0, 0, distance);
+        //            //transform.Translate(new Vector3(0, 0, distance));
+        //            mokiAnim.SetTrigger("Attack");
+        //            Debug.Log("attack");
+
+
+
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("ddasdsa");
+        //        f_Alarm.SetActive(false);
+        //        clickF = false;
+        //    }
+                
+        //}
+        //Debug.DrawRay(transform.position, transform.forward*rayDistance, Color.red);
     }
 }

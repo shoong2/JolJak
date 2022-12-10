@@ -83,7 +83,7 @@ public class MoveHuman : MonoBehaviour
                 //StopCoroutine(RandomState());
                 StopCoroutine(Move());
                 isCollision = true;
-                nav.Resume();
+                //nav.Resume();
                 anim.SetBool("Walk", true);
                 anim.SetBool("Run", false);
                 nav.destination = moki.transform.position;
@@ -134,17 +134,18 @@ public class MoveHuman : MonoBehaviour
             case humanState.idle:
                 anim.SetBool("Walk", false);
                 anim.SetBool("Run", false);
-                nav.Stop();
+                //nav.Stop();
+                nav.speed = 0f;
                 break;
             case humanState.walk:
-                nav.Resume();
+                //nav.Resume();
                 anim.SetBool("Walk", true);
                 anim.SetBool("Run", false);
                 nav.destination = pos;
                 nav.speed = 1f;
                 break;
             case humanState.run:
-                nav.Resume();
+                //nav.Resume();
                 anim.SetBool("Run", true);
                 anim.SetBool("Walk", false);
                 nav.destination = pos;
