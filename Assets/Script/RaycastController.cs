@@ -8,12 +8,17 @@ public class RaycastController : MonoBehaviour
     RaycastHit ray;
     public float rayDistance;
     public LayerMask layerMask;
+
     public GameObject f_Alarm;
 
-
+    [SerializeField]
     Animator mokiAnim;
 
+    [SerializeField]
+    GameObject moki;
+
     bool clickF = false;
+    int loopNum = 0;
 
     private void Start()
     {
@@ -32,12 +37,38 @@ public class RaycastController : MonoBehaviour
             //    Debug.Log("hit human");
             //    Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
             //}
+            f_Alarm.SetActive(true);
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                clickF = true;
+                f_Alarm.SetActive(false);
+                mokiAnim.SetTrigger("Attack");
+                //while(Vector3.Distance(this.transform.position, ray.transform.position) >= 2f)
+                //{
+                //    moki.transform.position = Vector3.MoveTowards(moki.transform.position,
+                //    ray.collider.transform.position, 0.5f * Time.deltaTime);
 
+                //    if (loopNum++ > 10000)
+                //        throw new System.Exception("Infinite Loop");
+                //}
+
+                //while(Vector3.Distance(this.transform.position, ray.transform.position)>=1.89f)
+                //{
+                //    moki.transform.Translate(Vector3.forward*Time.deltaTime*0.5f);
+
+                //    if (loopNum++ > 10000)
+                //        throw new System.Exception("Infinite Loop");
+                //}
+
+
+            }
             Debug.Log("hit human");
+            //Debug.Log(Vector3.Distance(this.transform.position, ray.transform.position));
             Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
         }
         else
         {
+            f_Alarm.SetActive(false);
             Debug.Log("nothing");
             Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.green);
         }
@@ -80,5 +111,24 @@ public class RaycastController : MonoBehaviour
                 
         //}
         //Debug.DrawRay(transform.position, transform.forward*rayDistance, Color.red);
+
+        if(clickF == true)
+        {
+            moki.transform.position = Vector3.MoveTowards(moki.transform.position,
+                ray.collider.transform.position+new Vector3(0,1.2f,0), 1f * Time.deltaTime*2f);
+            Debug.Log(Vector3.Distance(moki.transform.position, ray.collider.transform.position));
+
+            if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) < 1.23f)
+            {
+                clickF = false;
+                moki.transform.parent = ray.collider.transform;
+
+            }
+
+
+            //moki.transform.Translate(Vector3.forward * Time.deltaTime);
+        }
     }
+
+    
 }
