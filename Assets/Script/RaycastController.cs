@@ -10,27 +10,36 @@ public class RaycastController : MonoBehaviour
     public LayerMask layerMask;
 
     public GameObject f_Alarm;
-
-    [SerializeField]
+    public GameObject c_Alarm;
+    //[SerializeField]
     Animator mokiAnim;
 
+    public AudioSource FlyAudio;
+    public AudioSource SuckAudio;
+
+    //public Camera camera2;
+
     [SerializeField]
-    GameObject moki;
+    Rigidbody moki;
+
+    [SerializeField]
+    CharacterController charScript;
 
     bool clickF = false;
     int loopNum = 0;
 
     private void Start()
     {
-        mokiAnim = GetComponent<Animator>();
+        mokiAnim = GetComponent<Animator>();      
     }
 
     void Update()
     {
         //if(!clickF)
         //    hitInfo = Physics.RaycastAll(transform.position, transform.forward, rayDistance);
-        
-        if(Physics.Raycast(transform.position, transform.forward,out ray, rayDistance, layerMask))
+
+        if (Physics.Raycast(transform.position, transform.forward, out ray, rayDistance, layerMask)
+            &&clickF ==false)
         {
             //if(ray.collider.tag=="Human")
             //{
@@ -38,11 +47,24 @@ public class RaycastController : MonoBehaviour
             //    Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
             //}
             f_Alarm.SetActive(true);
-            if(Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && clickF == false)
             {
-                clickF = true;
-                f_Alarm.SetActive(false);
+                for(int i =0; i<ray.collider.transform.childCount; i++ )
+                {
+                    if(ray.collider.transform.GetChild(i).name =="HCamera")
+                    {
+                        ray.collider.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+                //camera2.gameObject.SetActive(true);
+                FlyAudio.Stop();
+                SuckAudio.Play();
                 mokiAnim.SetTrigger("Attack");
+                f_Alarm.SetActive(false);
+                c_Alarm.SetActive(true);
+                clickF = true;
+                //f_Alarm.SetActive(false);
+
                 //while(Vector3.Distance(this.transform.position, ray.transform.position) >= 2f)
                 //{
                 //    moki.transform.position = Vector3.MoveTowards(moki.transform.position,
@@ -65,12 +87,30 @@ public class RaycastController : MonoBehaviour
             Debug.Log("hit human");
             //Debug.Log(Vector3.Distance(this.transform.position, ray.transform.position));
             Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
+
         }
         else
         {
             f_Alarm.SetActive(false);
-            Debug.Log("nothing");
+            //Debug.Log("nothing");
             Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.green);
+        }
+
+        if(clickF == true)
+        {
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                //camera2.gameObject.SetActive(false);
+                Debug.Log("detach");
+                FlyAudio.Play();
+                SuckAudio.Stop();
+                c_Alarm.SetActive(false);
+                mokiAnim.SetTrigger("Idle");
+                moki.transform.parent = null;
+                clickF = false;
+                charScript.eatBlood = false;
+
+            }
         }
         //for(int i =0; i< hitInfo.Length; i++)
         //{
@@ -108,27 +148,49 @@ public class RaycastController : MonoBehaviour
         //        f_Alarm.SetActive(false);
         //        clickF = false;
         //    }
-                
+
         //}
         //Debug.DrawRay(transform.position, transform.forward*rayDistance, Color.red);
 
-        if(clickF == true)
-        {
-            moki.transform.position = Vector3.MoveTowards(moki.transform.position,
-                ray.collider.transform.position+new Vector3(0,1.2f,0), 1f * Time.deltaTime*2f);
-            Debug.Log(Vector3.Distance(moki.transform.position, ray.collider.transform.position));
+        //if(clickF == true)
+        //{
+        //    f_Alarm.SetActive(false);
 
-            if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) < 1.23f)
+        //    moki.transform.parent = ray.collider.transform;
+        //    //Debug.Log(Vector3.Distance(moki.transform.position, ray.collider.transform.position));
+
+        //    if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) > 1.23f)
+        //    {
+        //        //clickF = false;
+        //        //moki.transform.parent = ray.collider.transform;
+        //        moki.transform.position = Vector3.MoveTowards(moki.transform.position,
+        //            ray.collider.transform.position + new Vector3(0, 1.2f, 0), 1f * Time.deltaTime * 2f);
+        //        //moki.MovePosition(ray.collider.transform.position.normalized * Time.deltaTime * 2f);
+
+        //    }
+     
+    }
+
+    private void FixedUpdate()
+    {
+        if (clickF == true)
+        {
+
+            moki.transform.parent = ray.collider.transform;
+
+            if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) > 1.23f)
             {
-                clickF = false;
-                moki.transform.parent = ray.collider.transform;
+                //clickF = false;
+                //moki.transform.parent = ray.collider.transform;
+                moki.transform.position = Vector3.MoveTowards(moki.transform.position,
+                    ray.collider.transform.position + new Vector3(0, 1.2f, 0), 1f * Time.deltaTime * 2f);
+                //moki.MovePosition(ray.collider.transform.position.normalized * Time.deltaTime * 2f);
+                charScript.eatBlood = true;
 
             }
 
-
-            //moki.transform.Translate(Vector3.forward * Time.deltaTime);
+           
         }
-    }
 
-    
+    }
 }

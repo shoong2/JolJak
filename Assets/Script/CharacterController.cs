@@ -23,6 +23,8 @@ public class CharacterController : MonoBehaviour
     float distance;
     GameObject colObject;
 
+    public bool eatBlood = false;
+
     //RaycastHit hit;
     private void Start()
     {
@@ -36,8 +38,11 @@ public class CharacterController : MonoBehaviour
     private void Update()
     {
         playerRid.velocity = Vector3.zero;
-        LookAround();
-        Move();
+        if (!eatBlood)
+        {
+            LookAround();
+            Move();
+        }
 
         
 

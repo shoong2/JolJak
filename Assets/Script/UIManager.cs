@@ -10,8 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     Image fillImg;
 
-    float maxHP = 10;
-    float curHP = 10;
+    float maxHP = 50;
+    float curHP = 50;
 
     private void Start()
     {
