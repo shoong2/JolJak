@@ -10,10 +10,10 @@ public class MoveHuman : MonoBehaviour
     float x, y, z, wait;
     public float angleRange = 50f;
     public float radius = 10f;
-    bool isCollision = false;
+    public bool isCollision = false;
     bool canTrace = true;
     bool canClap = true;
-
+    public bool isSucked = false;
     Vector3 pos;
 
     Transform humnaTransform;
@@ -119,6 +119,14 @@ public class MoveHuman : MonoBehaviour
         //}
         //else
         //    canClap = true;
+
+        if(isSucked)
+        {
+            anim.SetBool("Walk", false);
+            anim.SetBool("Run", false);
+            currentState = humanState.idle;
+            nav.Stop();
+        }
     }
 
 
@@ -174,9 +182,9 @@ public class MoveHuman : MonoBehaviour
         //StartCoroutine(Move());
     }
 
-    IEnumerator RandomState()
+    public IEnumerator RandomState()
     {
-        if(!isCollision) //추적이 아닐때만 랜덤 위치로 뛰거나 움직이거나 멈추기
+        if(!isCollision &&!isSucked ) //추적이 아닐때만 랜덤 위치로 뛰거나 움직이거나 멈추기
         {
             currentState = (humanState)(UnityEngine.Random.Range(0, Enum.GetNames(typeof(humanState)).Length));
             StartCoroutine(Move());

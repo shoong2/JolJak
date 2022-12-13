@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class RaycastController : MonoBehaviour
 {
     RaycastHit[] hitInfo;
@@ -17,7 +17,9 @@ public class RaycastController : MonoBehaviour
     public AudioSource FlyAudio;
     public AudioSource SuckAudio;
 
-    //public Camera camera2;
+    GameObject subCamera;
+
+  
 
     [SerializeField]
     Rigidbody moki;
@@ -53,16 +55,21 @@ public class RaycastController : MonoBehaviour
                 {
                     if(ray.collider.transform.GetChild(i).name =="HCamera")
                     {
-                        ray.collider.transform.GetChild(i).gameObject.SetActive(true);
+                        subCamera = ray.collider.transform.GetChild(i).gameObject;
+                        subCamera.SetActive(true);
                     }
                 }
                 //camera2.gameObject.SetActive(true);
                 FlyAudio.Stop();
-                SuckAudio.Play();
+             
                 mokiAnim.SetTrigger("Attack");
                 f_Alarm.SetActive(false);
                 c_Alarm.SetActive(true);
                 clickF = true;
+                ray.collider.GetComponent<MoveHuman>().isSucked = true;
+                
+       
+                
                 //f_Alarm.SetActive(false);
 
                 //while(Vector3.Distance(this.transform.position, ray.transform.position) >= 2f)
@@ -109,6 +116,8 @@ public class RaycastController : MonoBehaviour
                 moki.transform.parent = null;
                 clickF = false;
                 charScript.eatBlood = false;
+                subCamera.SetActive(false);
+  
 
             }
         }
@@ -180,6 +189,7 @@ public class RaycastController : MonoBehaviour
 
             if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) > 1.23f)
             {
+                SuckAudio.Play();
                 //clickF = false;
                 //moki.transform.parent = ray.collider.transform;
                 moki.transform.position = Vector3.MoveTowards(moki.transform.position,
