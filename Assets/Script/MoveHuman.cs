@@ -21,6 +21,8 @@ public class MoveHuman : MonoBehaviour
     Animator anim;
     GameObject moki;
 
+    public RaycastController rayControll;
+
 
     Color _blue = new Color(0f, 0f, 1f, 0.2f);
     Color _red = new Color(1f, 0f, 0f, 0.2f);
@@ -68,14 +70,21 @@ public class MoveHuman : MonoBehaviour
             if (degree <= angleRange / 2f)
             {
 
-                if (interV.magnitude <= 3)
+                if (interV.magnitude <= 3f)
                 {
-                    //Debug.Log("hit");
-                    if (canClap)
+                    if (rayControll.clickF==true)
                     {
-                        anim.SetTrigger("Clap");
-                        canClap = false;
+                        anim.SetTrigger("BaseBall");
                     }
+                       
+                    else
+                        anim.SetTrigger("Clap");
+                    //Debug.Log("hit");
+                    //if (canClap)
+                    //{
+                    //    anim.SetTrigger("Clap");
+                    //    canClap = false;
+                    //}
            
                 }
                 else

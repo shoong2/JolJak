@@ -19,7 +19,7 @@ public class RaycastController : MonoBehaviour
 
     GameObject subCamera;
 
-  
+    public GameManger gameManager;
 
     [SerializeField]
     Rigidbody moki;
@@ -27,9 +27,11 @@ public class RaycastController : MonoBehaviour
     [SerializeField]
     CharacterController charScript;
 
-    bool clickF = false;
-    int loopNum = 0;
+    public bool clickF = false;
+    bool humanDeath = false;
 
+    int loopNum = 0;
+    float sTime = 0f;
     private void Start()
     {
         mokiAnim = GetComponent<Animator>();      
@@ -67,27 +69,8 @@ public class RaycastController : MonoBehaviour
                 c_Alarm.SetActive(true);
                 clickF = true;
                 ray.collider.GetComponent<MoveHuman>().isSucked = true;
-                
-       
-                
-                //f_Alarm.SetActive(false);
 
-                //while(Vector3.Distance(this.transform.position, ray.transform.position) >= 2f)
-                //{
-                //    moki.transform.position = Vector3.MoveTowards(moki.transform.position,
-                //    ray.collider.transform.position, 0.5f * Time.deltaTime);
-
-                //    if (loopNum++ > 10000)
-                //        throw new System.Exception("Infinite Loop");
-                //}
-
-                //while(Vector3.Distance(this.transform.position, ray.transform.position)>=1.89f)
-                //{
-                //    moki.transform.Translate(Vector3.forward*Time.deltaTime*0.5f);
-
-                //    if (loopNum++ > 10000)
-                //        throw new System.Exception("Infinite Loop");
-                //}
+                sTime = 0;
 
 
             }
@@ -105,8 +88,13 @@ public class RaycastController : MonoBehaviour
 
         if(clickF == true)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C) || humanDeath)
             {
+                if(humanDeath ==true)
+                {
+                    StartCoroutine(Death(ray.collider.gameObject));
+                    humanDeath = false;
+                }
                 //camera2.gameObject.SetActive(false);
                 Debug.Log("detach");
                 FlyAudio.Play();
@@ -118,65 +106,20 @@ public class RaycastController : MonoBehaviour
                 charScript.eatBlood = false;
                 subCamera.SetActive(false);
   
+            }
 
+            gameManager.curHP += Time.deltaTime * 1.5f;
+            
+            if(!humanDeath)
+                sTime += Time.deltaTime;
+
+            if (sTime > 6f)
+            {
+                humanDeath = true;      
+                sTime = 0f;
             }
         }
-        //for(int i =0; i< hitInfo.Length; i++)
-        //{
-        //    Debug.Log("Check");
-        //    RaycastHit hit = hitInfo[i];
-        //    Debug.Log(hitInfo[i]);
-        //    if (hit.collider.tag == "Human")
-        //    {
-        //        Debug.Log("raycast");
-        //        Debug.Log(clickF);
-        //        f_Alarm.SetActive(true);
-        //        if (Input.GetKeyDown(KeyCode.F))
-        //        {
-        //            clickF = true;
-        //            f_Alarm.SetActive(false);
-        //            //if(transform.position.z > colObject.transform.position.z)
-        //            //{
-        //            //    distance = colObject.transform.position.z - transform.position.z;
-        //            //}
-
-        //            //distance = colObject.transform.position.z - transform.position.z;
-        //            //transform.position += new Vector3(0, 0, distance);
-        //            //transform.Translate(new Vector3(0, 0, distance));
-        //            mokiAnim.SetTrigger("Attack");
-        //            Debug.Log("attack");
-
-
-
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("ddasdsa");
-        //        f_Alarm.SetActive(false);
-        //        clickF = false;
-        //    }
-
-        //}
-        //Debug.DrawRay(transform.position, transform.forward*rayDistance, Color.red);
-
-        //if(clickF == true)
-        //{
-        //    f_Alarm.SetActive(false);
-
-        //    moki.transform.parent = ray.collider.transform;
-        //    //Debug.Log(Vector3.Distance(moki.transform.position, ray.collider.transform.position));
-
-        //    if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) > 1.23f)
-        //    {
-        //        //clickF = false;
-        //        //moki.transform.parent = ray.collider.transform;
-        //        moki.transform.position = Vector3.MoveTowards(moki.transform.position,
-        //            ray.collider.transform.position + new Vector3(0, 1.2f, 0), 1f * Time.deltaTime * 2f);
-        //        //moki.MovePosition(ray.collider.transform.position.normalized * Time.deltaTime * 2f);
-
-        //    }
+        
      
     }
 
@@ -202,5 +145,12 @@ public class RaycastController : MonoBehaviour
            
         }
 
+    }
+
+    IEnumerator Death(GameObject rayHit)
+    {
+        ray.collider.GetComponent<Animator>().SetTrigger("Death");
+        yield return new WaitForSeconds(3f);
+        Destroy(rayHit);
     }
 }

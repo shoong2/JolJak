@@ -6,7 +6,10 @@ public class HandController : MonoBehaviour
 {
     [SerializeField]
     Rigidbody mokiRigd;
-    
+
+    public GameManger gm;
+
+    bool oneTimeCor = true;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -18,6 +21,11 @@ public class HandController : MonoBehaviour
             mokiRigd.constraints = RigidbodyConstraints.None;
             mokiRigd.useGravity = true;
             mokiRigd.gameObject.transform.GetChild(0).GetComponent<Animator>().speed = 0f;
+            if (oneTimeCor)
+            {
+                gm.hitHand = true;
+                oneTimeCor = false;
+            }
             //mokiRigd.mass = 10f;
         }
     }
