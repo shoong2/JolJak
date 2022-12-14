@@ -72,11 +72,11 @@ public class MoveHuman : MonoBehaviour
 
                 if (interV.magnitude <= 3f)
                 {
-                    if (rayControll.clickF==true)
+                    if (rayControll.clickF == true)
                     {
                         anim.SetTrigger("BaseBall");
                     }
-                       
+
                     else
                         anim.SetTrigger("Clap");
                     //Debug.Log("hit");

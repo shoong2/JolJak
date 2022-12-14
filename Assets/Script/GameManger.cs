@@ -93,6 +93,7 @@ public class GameManger : MonoBehaviour
 
     public IEnumerator Fade()
     {
+        
         if (scoreTime > dataBase.highScore)
         {
             dataBase.highScore = scoreTime;
@@ -124,14 +125,22 @@ public class GameManger : MonoBehaviour
         }
         time = 0f;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         gameOver.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         nowScore.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         bestScore.gameObject.SetActive(true);
         //end.gameObject.SetActive(false);
         //yield return null;
+        while(Time.timeScale >=0.05)
+        {
+            Time.timeScale -= 0.08f;
+            yield return new WaitForSeconds(0.01f);
+            Debug.Log(Time.timeScale);
+            
+        }
+        Time.timeScale = 0f;
     }
 }
 

@@ -32,6 +32,8 @@ public class RaycastController : MonoBehaviour
 
     int loopNum = 0;
     float sTime = 0f;
+
+    public float eatSpeed =2f;
     private void Start()
     {
         mokiAnim = GetComponent<Animator>();      
@@ -108,7 +110,7 @@ public class RaycastController : MonoBehaviour
   
             }
 
-            gameManager.curHP += Time.deltaTime * 1.5f;
+            gameManager.curHP += Time.deltaTime * eatSpeed;
             
             if(!humanDeath)
                 sTime += Time.deltaTime;
