@@ -65,7 +65,7 @@ public class RaycastController : MonoBehaviour
                 }
                 //camera2.gameObject.SetActive(true);
                 FlyAudio.Stop();
-             
+                SuckAudio.Play();
                 mokiAnim.SetTrigger("Attack");
                 f_Alarm.SetActive(false);
                 c_Alarm.SetActive(true);
@@ -134,7 +134,8 @@ public class RaycastController : MonoBehaviour
 
             if (Vector3.Distance(moki.transform.position, ray.collider.transform.position) > 1.23f)
             {
-                SuckAudio.Play();
+                Debug.Log("sound");
+                
                 //clickF = false;
                 //moki.transform.parent = ray.collider.transform;
                 moki.transform.position = Vector3.MoveTowards(moki.transform.position,

@@ -72,12 +72,12 @@ public class MoveHuman : MonoBehaviour
 
                 if (interV.magnitude <= 3f)
                 {
-                    if (rayControll.clickF == true)
-                    {
-                        anim.SetTrigger("BaseBall");
-                    }
+                    //if (rayControll.clickF == true)
+                    //{
+                    //    anim.SetTrigger("BaseBall");
+                    //}
 
-                    else
+                    //else
                         anim.SetTrigger("Clap");
                     //Debug.Log("hit");
                     //if (canClap)
@@ -204,6 +204,7 @@ public class MoveHuman : MonoBehaviour
         StartCoroutine(RandomState());
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Handles.color = isCollision ? _red : _blue;
@@ -211,5 +212,6 @@ public class MoveHuman : MonoBehaviour
         Handles.DrawSolidArc(transform.position, Vector3.up, transform.forward, angleRange / 2, radius);
         Handles.DrawSolidArc(transform.position, Vector3.up, transform.forward, -angleRange / 2, radius);
     }
+#endif
 
 }

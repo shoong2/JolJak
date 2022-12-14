@@ -8,22 +8,26 @@ public class HandController : MonoBehaviour
     Rigidbody mokiRigd;
 
     public GameManger gm;
-
+    public AudioSource clap;
+    //public AudioSource fly;
+    //public AudioSource suck;
+    
     bool oneTimeCor = true;
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             Debug.Log("yes");
-            //mokiRigd.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
-            //mokiRigd.freezeRotation = false;
-            //mokiRigd.constraints = ~RigidbodyConstraints.FreezePositionY;
+            //fly.Stop();
+            //suck.Stop();
+            clap.Play();
             mokiRigd.constraints = RigidbodyConstraints.None;
             mokiRigd.useGravity = true;
             mokiRigd.gameObject.transform.GetChild(0).GetComponent<Animator>().speed = 0f;
             if (oneTimeCor)
             {
                 gm.hitHand = true;
+                Debug.Log(gm.hitHand+ " a");
                 oneTimeCor = false;
             }
             //mokiRigd.mass = 10f;

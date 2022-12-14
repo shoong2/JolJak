@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class GameManger : MonoBehaviour
 {
     [SerializeField]
@@ -19,6 +20,7 @@ public class GameManger : MonoBehaviour
 
     public Image end;
     public GameObject gameOver;
+    public GameObject button;
 
     //엔딩조건
     public bool hitHand = false; 
@@ -35,15 +37,17 @@ public class GameManger : MonoBehaviour
     string scoreToString;
     string bestScoreToString;
 
+    public AudioSource fly;
 
     private void Start()
     {
         
         hpBar.value = curHP / maxHP;
 
-        SAVE_DATA_DIRECTORY = Application.dataPath + "/Saves/";
-        Debug.Log(Application.dataPath);
-        LoadData();
+        SAVE_DATA_DIRECTORY = Application.persistentDataPath + "/Saves/";
+        Debug.Log(Application.persistentDataPath);
+        //SaveData();
+        //LoadData();
         Debug.Log("high: " + dataBase.highScore);
 
         if (!Directory.Exists(SAVE_DATA_DIRECTORY))
@@ -60,8 +64,16 @@ public class GameManger : MonoBehaviour
 
     public void LoadData()
     {
-        string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
-        dataBase = JsonUtility.FromJson<DataBase>(loadJson);
+        if (File.Exists(SAVE_DATA_DIRECTORY + SAVE_FILENAME))
+        {
+            string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
+            dataBase = JsonUtility.FromJson<DataBase>(loadJson);
+        }
+
+        else
+        {
+            Debug.Log("없음");
+        }
         
  
     }
@@ -75,6 +87,7 @@ public class GameManger : MonoBehaviour
         HandleHp();
         if (curHP < 0 || hitHand)
         {
+            Debug.Log(hitHand);
             //fillImg.gameObject.SetActive(false);
             //scoreToString = scoreTime.ToString("00.00");
             //scoreToString = scoreToString.Replace(".", ":");
@@ -93,7 +106,8 @@ public class GameManger : MonoBehaviour
 
     public IEnumerator Fade()
     {
-        
+        hitHand = false;
+        fly.Stop();
         if (scoreTime > dataBase.highScore)
         {
             dataBase.highScore = scoreTime;
@@ -125,14 +139,13 @@ public class GameManger : MonoBehaviour
         }
         time = 0f;
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         gameOver.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         nowScore.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         bestScore.gameObject.SetActive(true);
-        //end.gameObject.SetActive(false);
-        //yield return null;
+        button.SetActive(true);
         while(Time.timeScale >=0.05)
         {
             Time.timeScale -= 0.08f;
@@ -141,6 +154,20 @@ public class GameManger : MonoBehaviour
             
         }
         Time.timeScale = 0f;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Main");
+       
+        Time.timeScale = 1f;
+    }    
+
+    public void Home()
+    {
+        
+        SceneManager.LoadScene("Title");
+        Time.timeScale = 1f;
     }
 }
 
