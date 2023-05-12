@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System.IO;
 using TMPro;
 using UnityEngine.SceneManagement;
+using PlayFab;
+using PlayFab.ClientModels;
 public class GameManger : MonoBehaviour
 {
     [SerializeField]
@@ -39,6 +41,9 @@ public class GameManger : MonoBehaviour
 
     public AudioSource fly;
 
+    public TMP_Text testText;
+    public TMP_Text test2;
+
     private void Start()
     {
         
@@ -52,6 +57,8 @@ public class GameManger : MonoBehaviour
 
         if (!Directory.Exists(SAVE_DATA_DIRECTORY))
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
+
+        LoadData();
     }
 
     public void SaveData()
@@ -77,17 +84,40 @@ public class GameManger : MonoBehaviour
         
  
     }
+    public void GetLeaderboard()
+    {
+        var request = new GetLeaderboardRequest
+        {
+            StartPosition = 0,
+            StatisticName = "Rank",
+            MaxResultsCount = 10,
+            ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
+        };
+        PlayFabClientAPI.GetLeaderboard(request, (result) =>
+        {
+            for (int i = 0; i < result.Leaderboard.Count; i++)
+            {
+                var curBoard = result.Leaderboard[i];
+                testText.text += i + 1 + " " + curBoard.DisplayName + " " + curBoard.StatValue + "\n";
+            }
+        },
+        (error) => print("fail"));
+    }
 
     private void Update()
     {
-        if(curHP >0)
+        if (curHP > 0 && !hitHand)
+        {
             scoreTime += Time.deltaTime;
-
-        curHP -= Time.deltaTime;
-        HandleHp();
-        if (curHP < 0 || hitHand)
+            curHP -= Time.deltaTime;
+            HandleHp();
+        }
+       
+        if (curHP < 0 || hitHand) //엔드 조건
         {
             Debug.Log(hitHand);
+            SetStat((int)scoreTime);
+            GetLeaderboard();
             //fillImg.gameObject.SetActive(false);
             //scoreToString = scoreTime.ToString("00.00");
             //scoreToString = scoreToString.Replace(".", ":");
@@ -95,7 +125,9 @@ public class GameManger : MonoBehaviour
             if (endScreen)
             {
                 StartCoroutine(Fade());
-            }            
+     
+            }  
+          
         }
     }
 
@@ -169,6 +201,23 @@ public class GameManger : MonoBehaviour
         SceneManager.LoadScene("Title");
         Time.timeScale = 1f;
     }
+
+    public void SetStat(int a)
+    {
+        PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
+        {
+            Statistics = new List<StatisticUpdate>
+            {
+                new StatisticUpdate {StatisticName ="Rank", Value = a},
+            }
+        },
+        (result) => { test2.text = "저장"; },
+        (error) => { test2.text = "저장 실패"; });
+
+
+    }
+
+    
 }
 
 [SerializeField]
