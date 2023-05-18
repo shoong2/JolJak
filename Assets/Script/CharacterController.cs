@@ -136,5 +136,10 @@ public class CharacterController : MonoBehaviour
 
     }
 
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("ggfg");
+    }
+
 
 }

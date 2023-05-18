@@ -44,10 +44,6 @@ public class MoveHuman : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         moki = GameObject.FindWithTag("Player");
 
-        //x = Random.Range(0.6f, 60f);
-        //y = 0.115f;
-        //z = Random.Range(0.6f, 60f);
-        //pos = new Vector3(x, y, z);
 
         StartCoroutine(RandomState());
     }
@@ -72,20 +68,7 @@ public class MoveHuman : MonoBehaviour
 
                 if (interV.magnitude <= 3f)
                 {
-                    //if (rayControll.clickF == true)
-                    //{
-                    //    anim.SetTrigger("BaseBall");
-                    //}
-
-                    //else
-                        anim.SetTrigger("Clap");
-                    //Debug.Log("hit");
-                    //if (canClap)
-                    //{
-                    //    anim.SetTrigger("Clap");
-                    //    canClap = false;
-                    //}
-           
+                        anim.SetTrigger("Clap");    
                 }
                 else
                     canClap = true;
@@ -114,20 +97,7 @@ public class MoveHuman : MonoBehaviour
             isCollision = false;     
         }
 
-        //Debug.Log(Vector3.Distance(transform.position, moki.transform.position));
-        //if (Vector3.Distance(transform.position, moki.transform.position) <= 3f)
-        //{
-        //    Debug.Log("hit");
-        //    if (canClap)
-        //    {
-        //        anim.SetTrigger("Clap");
-        //        canClap = false;
-        //    }
 
-
-        //}
-        //else
-        //    canClap = true;
 
         if(isSucked)
         {
