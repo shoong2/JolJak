@@ -138,22 +138,7 @@ public class MoveHuman : MonoBehaviour
                 nav.destination = pos;
                 nav.speed = 3f;
                 break;
-            //case humanState.trace:
-            //    nav.Resume();
-            //    //if(Vector3.Distance(this.transform.position, moki.transform.position) <10f)
-            //    //{
-            //    //    anim.SetBool("Walk", true);
-            //    //    anim.SetBool("Run", false);
-            //    //    nav.destination = moki.transform.position;
-            //    //    nav.speed = 1f;
-            //    //}
-            //    //else
-            //    //{
-            //    //    StartCoroutine(RandomState());
-            //    //}
-            //    //break;
-            //    isTrace = true;
-            //    break;
+           
         }
         //wait = UnityEngine.Random.Range(6f, 15f);
 

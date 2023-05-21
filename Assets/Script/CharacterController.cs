@@ -25,6 +25,9 @@ public class CharacterController : MonoBehaviour
 
     public bool eatBlood = false;
 
+    public ParticleSystem blood;
+    bool stopBlood = true;
+    bool startShot = false;
     //RaycastHit hit;
     private void Start()
     {
@@ -44,40 +47,28 @@ public class CharacterController : MonoBehaviour
             Move();
         }
 
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            stopBlood = false;
+            startShot = true;
+        }
 
-        
-        //foreach (GameObject mob in Human)
-        //{
-        //    if (Vector3.Distance(this.transform.position, mob.transform.position) <= 2)
-        //    {
-        //        colObject = mob;
-        //        f_Alarm.SetActive(true);
+        if (Input.GetMouseButtonUp(0))
+        {
+            stopBlood = true;
+        }
 
-        //        if (Input.GetKeyDown(KeyCode.F))
-        //        {
-        //            //if(transform.position.z > colObject.transform.position.z)
-        //            //{
-        //            //    distance = colObject.transform.position.z - transform.position.z;
-        //            //}
-
-        //            distance = colObject.transform.position.z - transform.position.z;
-        //            //transform.position += new Vector3(0, 0, distance);
-        //            //transform.Translate(new Vector3(0, 0, distance));
-        //            animator.SetTrigger("Attack");
-        //            Debug.Log("attack");
-
-        //        }
-             
-        //    }
-
-        //    if (Vector3.Distance(this.transform.position, colObject.transform.position) > 2)
-        //    {
-        //        f_Alarm.SetActive(false);
-        //    }
-
-        //}
-
+        if (startShot)
+        {
+            blood.Play();
+            startShot = false;
+        }
+        else if(stopBlood ==true)
+        {
+            blood.Stop();
+            stopBlood = false;
+        }
+       
 
     }
 
@@ -96,19 +87,18 @@ public class CharacterController : MonoBehaviour
         }
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         bool isMove = moveInput.magnitude != 0; //magnitude ∫§≈Õ±Ê¿Ã
-        //animator.SetBool("isMove", isMove);
         if(isMove)
         {
             Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
             Vector3 lookRight = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
-            //Vector3 goHeight = new Vector3(0f, height, 0f).normalized;
             Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x;
-            //Vector3 goHeight = new Vector3(0, height, 0);
 
             
             characterBody.forward = lookForward;
             transform.position += moveDir * Time.deltaTime * moveSpeed;
         }
+
+       
     }
     void LookAround()
     {
@@ -138,7 +128,12 @@ public class CharacterController : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("ggfg");
+        if (!RaycastController.maskOn)
+        {
+            GameManger.curHP -= 0.3f;
+            Debug.Log("hit fog");
+            Debug.Log(other);
+        }
     }
 
 

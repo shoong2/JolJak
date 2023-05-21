@@ -5,7 +5,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class PlayFabLogin : MonoBehaviour
 {
     public TMP_InputField name_Input;
@@ -54,6 +54,7 @@ public class PlayFabLogin : MonoBehaviour
     {
         Debug.Log("Congratulations, you made your first successful API call!");
         ErrorText.text = "로그인 성공";
+        SceneManager.LoadScene("Main");
     }
 
     private void OnLoginFailure(PlayFabError error)

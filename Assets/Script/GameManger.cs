@@ -16,7 +16,7 @@ public class GameManger : MonoBehaviour
 
     //체력 및 시간
     public float maxHP = 10;
-    public float curHP = 10;
+    public static float curHP;
     float fadeTime = 2.5f;
     float scoreTime = 0;
 
@@ -46,9 +46,9 @@ public class GameManger : MonoBehaviour
 
     private void Start()
     {
-        
+        curHP = maxHP;
         hpBar.value = curHP / maxHP;
-
+        Debug.Log(hpBar.value);
         SAVE_DATA_DIRECTORY = Application.persistentDataPath + "/Saves/";
         Debug.Log(Application.persistentDataPath);
         //SaveData();
