@@ -30,6 +30,7 @@ public class Coil : MonoBehaviour
             pointLight.SetActive(false);
             //MeshCut.Cut(coilBody, transform.position, Vector3.right, coilMat);
             fog.Stop();
+            FogSpawn.startSpawnFogNum--;
         }
     }
 }

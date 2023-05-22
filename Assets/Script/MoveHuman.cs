@@ -28,6 +28,11 @@ public class MoveHuman : MonoBehaviour
     Color _red = new Color(1f, 0f, 0f, 0.2f);
 
 
+    GameObject targetPos;
+    GameObject randomPos;
+    public float range = 10;
+    Vector3 point;
+
     public enum humanState
     {
         idle,
@@ -43,13 +48,23 @@ public class MoveHuman : MonoBehaviour
         nav = gameObject.GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
         moki = GameObject.FindWithTag("Player");
-
+        targetPos = GameObject.FindWithTag("HumanSpawner");
+        randomPos = targetPos.transform.GetChild(0).gameObject;
 
         StartCoroutine(RandomState());
     }
 
     private void Update()
     {
+        if(DayAndNight.isNight)
+        {
+            radius = 5;
+            nav.speed = 1f;
+        }
+        else
+        {
+            radius = 10;
+        }
  
         Vector3 interV = moki.transform.position - transform.position;
 
@@ -112,10 +127,15 @@ public class MoveHuman : MonoBehaviour
 
     IEnumerator Move()
     {
-        x = UnityEngine.Random.Range(0.6f, 100f);
-        y = 0.115f;
-        z = UnityEngine.Random.Range(0.6f, 100f);
-        pos = new Vector3(x, y, z);
+        //x = UnityEngine.Random.Range(0.6f, 100f);
+        //y = 0.115f;
+        //z = UnityEngine.Random.Range(0.6f, 100f);
+        //pos = new Vector3(x, y, z);
+
+        if (RandomPoint(targetPos.transform.position, range, out point))
+        {
+            randomPos.transform.position = point;
+        }
         switch (currentState)
         {
             case humanState.idle:
@@ -128,15 +148,20 @@ public class MoveHuman : MonoBehaviour
                 nav.Resume();
                 anim.SetBool("Walk", true);
                 anim.SetBool("Run", false);
-                nav.destination = pos;
+                //nav.destination = pos;
+                nav.SetDestination(randomPos.transform.position);
                 nav.speed = 1f;
                 break;
             case humanState.run:
-                nav.Resume();
-                anim.SetBool("Run", true);
-                anim.SetBool("Walk", false);
-                nav.destination = pos;
-                nav.speed = 3f;
+                if (!DayAndNight.isNight)
+                {
+                    nav.Resume();
+                    anim.SetBool("Run", true);
+                    anim.SetBool("Walk", false);
+                    //nav.destination = pos;
+                    nav.SetDestination(randomPos.transform.position);
+                    nav.speed = 3f;
+                }
                 break;
            
         }
@@ -144,6 +169,22 @@ public class MoveHuman : MonoBehaviour
 
         yield return null;
         //StartCoroutine(Move());
+    }
+
+    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = Vector3.zero;
+        return false;
     }
 
     public IEnumerator RandomState()

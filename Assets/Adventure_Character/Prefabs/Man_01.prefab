@@ -1566,6 +1566,7 @@ MonoBehaviour:
   isCollision: 0
   isSucked: 0
   rayControll: {fileID: 0}
+  range: 50
   currentState: 0
 --- !u!195 &769082130476106563
 NavMeshAgent:

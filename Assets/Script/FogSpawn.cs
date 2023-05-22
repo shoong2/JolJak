@@ -11,7 +11,7 @@ public class FogSpawn : MonoBehaviour
 
     public float range = 5f;
     Vector3 point;
-    public int startSpawnFogNum = 5;
+    public static int startSpawnFogNum = 5;
     public GameObject coilPrefab;
 
     public float sizeIncreaseRate = 0.5f;
@@ -52,22 +52,6 @@ public class FogSpawn : MonoBehaviour
         return false;
     }
 
-    //IEnumerator ResizeFog(GameObject particle)
-    //{
-    //    yield return new WaitForSeconds(3f);
-    //    //while (particle.startSize < 1000)
-    //    //{
-    //    //    Debug.Log("?");
-    //    //    // particle.scale += new Vector3(10f, 10f, 10f);
-    //    //    particle.startSize += 10f;
-    //    //    yield return new WaitForSeconds(0.5f);
-    //    //}
-    //    while(particle.transform.localScale.x<10f)
-    //    {
-    //        particle.transform.localScale += new Vector3(sizeIncreaseRate, sizeIncreaseRate, sizeIncreaseRate)*Time.deltaTime;
-    //        yield return new WaitForSeconds(0.1f);
-    //    }
-    //}
 
 
 }

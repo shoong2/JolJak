@@ -27,6 +27,7 @@ public class GameManger : MonoBehaviour
     //엔딩조건
     public bool hitHand = false; 
     bool endScreen = true;
+    bool isend = false;
 
     //데이터
     DataBase dataBase = new DataBase();
@@ -113,7 +114,7 @@ public class GameManger : MonoBehaviour
             HandleHp();
         }
        
-        if (curHP < 0 || hitHand) //엔드 조건
+        if ((curHP < 0 || hitHand || FogSpawn.startSpawnFogNum <=0) &&!isend ) //엔드 조건
         {
             Debug.Log(hitHand);
             SetStat((int)scoreTime);
@@ -126,8 +127,9 @@ public class GameManger : MonoBehaviour
             {
                 StartCoroutine(Fade());
      
-            }  
-          
+            }
+
+            isend = true;
         }
     }
 

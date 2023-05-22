@@ -28,7 +28,9 @@ public class CharacterController : MonoBehaviour
     public ParticleSystem blood;
     bool stopBlood = true;
     bool startShot = false;
-    //RaycastHit hit;
+    bool isShotBlood = false;
+
+    public float shotBlood = 1f;
     private void Start()
     {
         animator = characterBody.GetComponent<Animator>();
@@ -51,11 +53,13 @@ public class CharacterController : MonoBehaviour
         {
             stopBlood = false;
             startShot = true;
+            isShotBlood = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             stopBlood = true;
+            isShotBlood = false;
         }
 
         if (startShot)
@@ -69,7 +73,11 @@ public class CharacterController : MonoBehaviour
             stopBlood = false;
         }
        
-
+        if(isShotBlood && !startShot)
+        {
+            Debug.Log("shot");
+            GameManger.curHP -= shotBlood*Time.deltaTime;
+        }
     }
 
     void Move()

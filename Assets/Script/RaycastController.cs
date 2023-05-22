@@ -144,7 +144,7 @@ public class RaycastController : MonoBehaviour
   
             }
 
-            //GameManger.curHP += Time.deltaTime * eatSpeed;
+            GameManger.curHP += Time.deltaTime * eatSpeed;
             
             if(!humanDeath)
                 sTime += Time.deltaTime;

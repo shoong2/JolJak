@@ -9,7 +9,7 @@ public class HumanSpawn : MonoBehaviour
     public GameObject humanPrefab;
     public float range = 10.0f;
     public Transform targetPos;
-
+    public Transform randomPos;
     public int startSpawnHumanNum = 5;
     Vector3 point;
 
@@ -22,8 +22,8 @@ public class HumanSpawn : MonoBehaviour
         {
             if (RandomPoint(targetPos.position, range, out point))
             {
-                targetPos.position = point;
-                GameObject human = Instantiate(humanPrefab, targetPos.position, targetPos.rotation);
+                randomPos.position = point;
+                GameObject human = Instantiate(humanPrefab, randomPos.position, randomPos.rotation);
             }
         }
     }
@@ -35,8 +35,8 @@ public class HumanSpawn : MonoBehaviour
             time = 0;
             if (RandomPoint(targetPos.position, range, out point))
             {
-                targetPos.position = point;
-                GameObject human = Instantiate(humanPrefab, targetPos.position, targetPos.rotation);
+                randomPos.position = point;
+                GameObject human = Instantiate(humanPrefab, randomPos.position, randomPos.rotation);
             }
         }
     }
@@ -46,7 +46,7 @@ public class HumanSpawn : MonoBehaviour
         {
             Vector3 randomPoint = center + Random.insideUnitSphere * range;
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
             {
                 result = hit.position;
                 return true;

@@ -7,7 +7,7 @@ public class DayAndNight : MonoBehaviour
     [SerializeField]
     float secondPerRealTimeSecond;
 
-    bool isNight = false;
+    public static bool isNight = false;
 
     [SerializeField]
     float nightFogDensity;
@@ -16,6 +16,8 @@ public class DayAndNight : MonoBehaviour
     [SerializeField]
     float fogDensityCalc;
     float currentFogDensity;
+
+    public GameObject playerLight;
 
     private void Start()
     {
@@ -39,9 +41,11 @@ public class DayAndNight : MonoBehaviour
                 currentFogDensity += 0.1f * fogDensityCalc * Time.deltaTime;
                 RenderSettings.fogDensity = currentFogDensity;
             }
+            playerLight.SetActive(true);
         }
         else
         {
+            playerLight.SetActive(false);
             if (currentFogDensity >= dayFogDensity)
             {
                 currentFogDensity -= 0.1f * fogDensityCalc * Time.deltaTime;
