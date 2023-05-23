@@ -63,7 +63,7 @@ public class MoveHuman : MonoBehaviour
         }
         else
         {
-            radius = 10;
+            radius = 8;
         }
  
         Vector3 interV = moki.transform.position - transform.position;

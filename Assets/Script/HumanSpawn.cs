@@ -14,7 +14,7 @@ public class HumanSpawn : MonoBehaviour
     Vector3 point;
 
     float time = 0;
-    float spawnTime = 5;
+    public float spawnTime = 8;
 
     private void Start()
     {

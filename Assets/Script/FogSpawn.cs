@@ -18,8 +18,9 @@ public class FogSpawn : MonoBehaviour
 
     private void Start()
     {
+        startSpawnFogNum = 5;
         //particle = fogPrefab.GetComponent<ParticleSystem>();
-       
+
         for (int i = 0; i < startSpawnFogNum; i++)
         {
             if (RandomPoint(targetPos.position, range, out point))

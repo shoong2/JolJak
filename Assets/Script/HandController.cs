@@ -13,6 +13,12 @@ public class HandController : MonoBehaviour
     //public AudioSource suck;
     
     bool oneTimeCor = true;
+
+    private void Start()
+    {
+        mokiRigd = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
+        gm = FindObjectOfType<GameManger>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

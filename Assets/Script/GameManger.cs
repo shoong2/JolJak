@@ -19,10 +19,12 @@ public class GameManger : MonoBehaviour
     public static float curHP;
     float fadeTime = 2.5f;
     float scoreTime = 0;
+    public TMP_Text count;
 
     public Image end;
     public GameObject gameOver;
     public GameObject button;
+    public GameObject board;
 
     //엔딩조건
     public bool hitHand = false; 
@@ -47,6 +49,8 @@ public class GameManger : MonoBehaviour
 
     private void Start()
     {
+        count.text = ((int)scoreTime).ToString();
+        isend = false;
         curHP = maxHP;
         hpBar.value = curHP / maxHP;
         Debug.Log(hpBar.value);
@@ -85,6 +89,7 @@ public class GameManger : MonoBehaviour
         
  
     }
+    
     public void GetLeaderboard()
     {
         var request = new GetLeaderboardRequest
@@ -94,12 +99,29 @@ public class GameManger : MonoBehaviour
             MaxResultsCount = 10,
             ProfileConstraints = new PlayerProfileViewConstraints() { ShowDisplayName = true }
         };
+
+        
         PlayFabClientAPI.GetLeaderboard(request, (result) =>
         {
-            for (int i = 0; i < result.Leaderboard.Count; i++)
+            int w = 1;
+            //for (int i = 0; i < result.Leaderboard.Count; i++)
+            for(int i= result.Leaderboard.Count-1; i>=0; i--)
             {
+                
                 var curBoard = result.Leaderboard[i];
-                testText.text += i + 1 + " " + curBoard.DisplayName + " " + curBoard.StatValue + "\n";
+                if (curBoard.StatValue == (int)scoreTime)
+                {
+                    Debug.Log("color");
+                    testText.color = new Color(255, 255, 0);
+                }
+                else
+                {
+                    testText.color = Color.white;
+                    Debug.Log("no color");
+                }
+                testText.text += w + " " + curBoard.DisplayName + " " + curBoard.StatValue + "\n";
+                w++;
+                Debug.Log((int)scoreTime + "," + curBoard.StatValue);
             }
         },
         (error) => print("fail"));
@@ -109,24 +131,30 @@ public class GameManger : MonoBehaviour
     {
         if (curHP > 0 && !hitHand)
         {
+            count.text = ((int)scoreTime).ToString();
             scoreTime += Time.deltaTime;
             curHP -= Time.deltaTime;
             HandleHp();
+        }
+
+        if(curHP > maxHP)
+        {
+            curHP = maxHP;
         }
        
         if ((curHP < 0 || hitHand || FogSpawn.startSpawnFogNum <=0) &&!isend ) //엔드 조건
         {
             Debug.Log(hitHand);
-            SetStat((int)scoreTime);
-            GetLeaderboard();
+           
             //fillImg.gameObject.SetActive(false);
             //scoreToString = scoreTime.ToString("00.00");
             //scoreToString = scoreToString.Replace(".", ":");
             //nowScore.text = "score  " + scoreToString; 
             if (endScreen)
             {
-                StartCoroutine(Fade());
-     
+               StartCoroutine(Fade());
+               
+
             }
 
             isend = true;
@@ -142,21 +170,25 @@ public class GameManger : MonoBehaviour
     {
         hitHand = false;
         fly.Stop();
-        if (scoreTime > dataBase.highScore)
-        {
-            dataBase.highScore = scoreTime;
-        }
+        //if (scoreTime > dataBase.highScore)
+        //{
+        //    dataBase.highScore = scoreTime;
+        //}
 
-        fillImg.gameObject.SetActive(false);
-        scoreToString = scoreTime.ToString("00.00");
-        scoreToString = scoreToString.Replace(".", ":");
-        nowScore.text = "score  " + scoreToString;
+        //fillImg.gameObject.SetActive(false);
+        //scoreToString = scoreTime.ToString("00.00");
+        //scoreToString = scoreToString.Replace(".", ":");
+        //nowScore.text = "score  " + scoreToString;
         
-        bestScoreToString = dataBase.highScore.ToString("00.00");
-        bestScoreToString = bestScoreToString.Replace(".", ":");
-        bestScore.text = "best    " + bestScoreToString;
-        SaveData();
-
+        //bestScoreToString = dataBase.highScore.ToString("00.00");
+        //bestScoreToString = bestScoreToString.Replace(".", ":");
+        //bestScore.text = "best    " + bestScoreToString;
+        //SaveData();
+        if(FogSpawn.startSpawnFogNum<=0)
+        {
+            gameOver.GetComponent<TMP_Text>().text = "GAME CLEAR";
+            SetStat((int)scoreTime);
+        }
         endScreen = false;
         end.gameObject.SetActive(true);
         Color alpha = end.color;
@@ -171,22 +203,25 @@ public class GameManger : MonoBehaviour
             end.color = alpha;
             yield return null;
         }
+        
         time = 0f;
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         gameOver.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        nowScore.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        bestScore.gameObject.SetActive(true);
+        board.SetActive(true);
+        //yield return new WaitForSeconds(0.5f);
+        //nowScore.gameObject.SetActive(true);
+        //yield return new WaitForSeconds(0.5f);
+        //bestScore.gameObject.SetActive(true);
         button.SetActive(true);
-        while(Time.timeScale >=0.05)
-        {
-            Time.timeScale -= 0.08f;
-            yield return new WaitForSeconds(0.01f);
-            Debug.Log(Time.timeScale);
-            
-        }
+        //while(Time.timeScale >=0.05)
+        //{
+        //    Time.timeScale -= 0.08f;
+        //    yield return new WaitForSeconds(0.01f);
+        //    Debug.Log(Time.timeScale);
+
+        //}
+        GetLeaderboard();
         Time.timeScale = 0f;
     }
 
@@ -206,6 +241,12 @@ public class GameManger : MonoBehaviour
 
     public void SetStat(int a)
     {
+        //var request = new UpdatePlayerStatisticsRequest
+        //{
+        //    Statistics = new List<StatisticUpdate>
+        //{ new StatisticUpdate{StatisticName ="Rank", Value =a}}
+        //};
+       // PlayFabClientAPI.UpdatePlayerStatistics(request, ())
         PlayFabClientAPI.UpdatePlayerStatistics(new UpdatePlayerStatisticsRequest
         {
             Statistics = new List<StatisticUpdate>
@@ -213,7 +254,7 @@ public class GameManger : MonoBehaviour
                 new StatisticUpdate {StatisticName ="Rank", Value = a},
             }
         },
-        (result) => { test2.text = "저장"; },
+        (result) => { Debug.Log("저장"); },
         (error) => { test2.text = "저장 실패"; });
 
 

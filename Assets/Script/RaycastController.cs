@@ -37,6 +37,8 @@ public class RaycastController : MonoBehaviour
 
     public float eatSpeed =2f;
 
+    bool isSound = true;
+
     [Header("마스크 아이템 속성")]
     public GameObject gasMask;
     public float maskYPos = 3f;
@@ -53,7 +55,8 @@ public class RaycastController : MonoBehaviour
 
 
     private void Start()
-    {  
+    {
+        maskOn = false;
         mokiAnim = GetComponent<Animator>();
         mask = LayerMask.GetMask("Human") | LayerMask.GetMask("Item");
         nowMaskTime = maskTime;
@@ -135,18 +138,21 @@ public class RaycastController : MonoBehaviour
                     humanDeath = false;
                 }
                 Debug.Log("detach");
-                FlyAudio.Play();
+                if(isSound)
+                    FlyAudio.Play();
                 SuckAudio.Stop();
                 c_Alarm.SetActive(false);
                 mokiAnim.SetTrigger("Idle");
                 charScript.eatBlood = false;
                 subCamera.SetActive(false);
-  
+                moki.transform.SetParent(null);
+                clickF = false;
+                sTime = 0;
             }
 
             GameManger.curHP += Time.deltaTime * eatSpeed;
             
-            if(!humanDeath)
+            if(!humanDeath && clickF)
                 sTime += Time.deltaTime;
 
             if (sTime > 6f)
@@ -244,4 +250,19 @@ public class RaycastController : MonoBehaviour
     //        Debug.Log("hit fog");
     //    }
     //}
+
+    public void SoundCheck()
+    {
+        if (isSound)
+        {
+            FlyAudio.Stop();
+            isSound = false;
+        }
+        else
+        {
+            FlyAudio.Play();
+            isSound = true;
+        }
+
+    }
 }

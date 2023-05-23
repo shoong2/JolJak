@@ -1562,7 +1562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleRange: 80
-  radius: 10
+  radius: 8
   isCollision: 0
   isSucked: 0
   rayControll: {fileID: 0}

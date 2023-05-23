@@ -46,6 +46,7 @@ public class PlayFabLogin : MonoBehaviour
 
     public void Login()
     {
+        ErrorText.text = "Login.....";
         var request = new LoginWithEmailAddressRequest { Email = Email_Input.text, Password = PW_Input.text };
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
     }
@@ -53,7 +54,7 @@ public class PlayFabLogin : MonoBehaviour
     private void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("Congratulations, you made your first successful API call!");
-        ErrorText.text = "로그인 성공";
+        ErrorText.text = "Login.....";
         SceneManager.LoadScene("Main");
     }
 
@@ -75,7 +76,7 @@ public class PlayFabLogin : MonoBehaviour
     private void RegisterSuccess(RegisterPlayFabUserResult result)
     {
         Debug.Log("가입 성공");
-        ErrorText.text = "가입 성공";
+        ErrorText.text = "Success Register!";
     }
 
     private void RegisterFailure(PlayFabError error)

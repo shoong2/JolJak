@@ -604,8 +604,10 @@ MonoBehaviour:
   cameraArm: {fileID: 8526134696289839601}
   mokiOrigin: {fileID: 8665712692351441195}
   f_Alarm: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 5
   eatBlood: 0
+  blood: {fileID: 0}
+  shotBlood: 1
 --- !u!54 &8526134697171152172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1279,3 +1281,12 @@ MonoBehaviour:
   charScript: {fileID: 8526134697171152175}
   clickF: 0
   eatSpeed: 2
+  gasMask: {fileID: 0}
+  maskYPos: 3
+  r_Alarm: {fileID: 0}
+  applyGasMask: {fileID: 0}
+  gasCamera: {fileID: 0}
+  maskTime: 10
+  nowMaskTime: 0
+  maskUI: {fileID: 0}
+  maskCount: {fileID: 0}

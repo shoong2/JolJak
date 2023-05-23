@@ -11,6 +11,8 @@ public class Coil : MonoBehaviour
     Material coilMat;
     public GameObject pointLight;
     public ParticleSystem fog;
+
+    bool oneTime = true;
     private void Start()
     {
         originalEmissionColor = coilLight.material.GetColor("_EmissionColor");
@@ -30,7 +32,11 @@ public class Coil : MonoBehaviour
             pointLight.SetActive(false);
             //MeshCut.Cut(coilBody, transform.position, Vector3.right, coilMat);
             fog.Stop();
-            FogSpawn.startSpawnFogNum--;
+            if (oneTime)
+            {
+                FogSpawn.startSpawnFogNum--;
+                oneTime = false;
+            }
         }
     }
 }

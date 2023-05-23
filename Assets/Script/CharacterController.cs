@@ -13,7 +13,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     GameObject mokiOrigin;
 
-    GameObject[] Human;
+    //GameObject[] Human;
     public GameObject f_Alarm;
 
     public float moveSpeed = 3f;
@@ -21,7 +21,7 @@ public class CharacterController : MonoBehaviour
 
     Rigidbody playerRid;
     float distance;
-    GameObject colObject;
+    //GameObject colObject;
 
     public bool eatBlood = false;
 
@@ -34,9 +34,9 @@ public class CharacterController : MonoBehaviour
     private void Start()
     {
         animator = characterBody.GetComponent<Animator>();
-        Human = GameObject.FindGameObjectsWithTag("Human");
+        //Human = GameObject.FindGameObjectsWithTag("Human");
         playerRid = GetComponent<Rigidbody>();
-        colObject = Human[0];
+        //colObject = Human[0];
        
     }
 
