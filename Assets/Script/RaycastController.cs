@@ -71,7 +71,7 @@ public class RaycastController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out ray, rayDistance, mask)
             &&!clickF &&!clickR)
         {
-            if (ray.collider.tag == "Human") 
+            if (ray.collider.tag == "Human" &&!humanDeath) 
             {
                 f_Alarm.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.F) && clickF == false)
@@ -109,9 +109,13 @@ public class RaycastController : MonoBehaviour
                 r_Alarm.SetActive(true);
                 if(Input.GetKeyDown(KeyCode.R))
                 {
+                    f_Alarm.SetActive(false);
+                    r_Alarm.SetActive(false);
                     Destroy(ray.collider.gameObject);
                     if (!maskOn)
-                        StartCoroutine(GasItem());
+                    {
+                        StartCoroutine(GasItem());                 
+                    }
                     else
                         nowMaskTime += maskTime;
                     clickR = false;

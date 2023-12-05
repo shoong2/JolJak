@@ -6,6 +6,7 @@ using PlayFab.ClientModels;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.IO;
 public class PlayFabLogin : MonoBehaviour
 {
     public TMP_InputField name_Input;
@@ -17,34 +18,60 @@ public class PlayFabLogin : MonoBehaviour
     string password;
     string email;
 
-
-    //public void PW_Value_Changed()
-    //{
-    //    password = PW_Input.text.ToString();
-    //}
-
-    //public void Email_Value_Changed()
-    //{
-    //    email = Email_Input.text.ToString();
-    //}
-
-    //public void Start()
-    //{
-    //    //if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
-    //    //{
-    //    //    /*
-    //    //    Please change the titleId below to your own titleId from PlayFab Game Manager.
-    //    //    If you have already set the value in the Editor Extensions, this can be skipped.
-    //    //    */
-    //    //    PlayFabSettings.staticSettings.TitleId = "30C95";
-    //    //}
-    //    PlayFabSettings.TitleId = "30C95";
-    //    Debug.Log("hi");
+    public Camera captureCamera;
 
 
-    //}
+    public void Capture()
+    {
+        // 카메라를 렌더 텍스처로 렌더링합니다.
+        RenderTexture renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
+        captureCamera.targetTexture = renderTexture;
+        Texture2D screenShot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        captureCamera.Render();
+        RenderTexture.active = renderTexture;
+        screenShot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        captureCamera.targetTexture = null;
+        RenderTexture.active = null;
+        Destroy(renderTexture);
 
-    public void Login()
+        // 텍스처를 바이트 배열로 변환합니다.
+        byte[] bytes = screenShot.EncodeToPNG();
+
+        // 파일로 저장합니다.
+        File.WriteAllBytes("Assets/CapturedImage.png", bytes);
+
+        Debug.Log("capture");
+
+    }
+
+
+//public void PW_Value_Changed()
+//{
+//    password = PW_Input.text.ToString();
+//}
+
+//public void Email_Value_Changed()
+//{
+//    email = Email_Input.text.ToString();
+//}
+
+//public void Start()
+//{
+//    //if (string.IsNullOrEmpty(PlayFabSettings.staticSettings.TitleId))
+//    //{
+//    //    /*
+//    //    Please change the titleId below to your own titleId from PlayFab Game Manager.
+//    //    If you have already set the value in the Editor Extensions, this can be skipped.
+//    //    */
+//    //    PlayFabSettings.staticSettings.TitleId = "30C95";
+//    //}
+//    PlayFabSettings.TitleId = "30C95";
+//    Debug.Log("hi");
+
+
+//}
+
+public void Login()
     {
         ErrorText.text = "Login.....";
         var request = new LoginWithEmailAddressRequest { Email = Email_Input.text, Password = PW_Input.text };
