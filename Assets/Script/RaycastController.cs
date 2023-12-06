@@ -210,6 +210,7 @@ public class RaycastController : MonoBehaviour
 
     IEnumerator Death(GameObject rayHit)
     {
+        SuckAudio.Stop();
         clickF = false;
         moki.transform.parent = null; //자식해제
         ray.collider.GetComponent<Animator>().SetTrigger("Death");

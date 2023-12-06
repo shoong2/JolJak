@@ -187,7 +187,7 @@ public class GameManger : MonoBehaviour
         if(FogSpawn.startSpawnFogNum<=0)
         {
             gameOver.GetComponent<TMP_Text>().text = "GAME CLEAR";
-            SetStat((int)scoreTime);
+            //SetStat((int)scoreTime); //졸작용으로 주석처리
         }
         endScreen = false;
         end.gameObject.SetActive(true);
@@ -221,7 +221,7 @@ public class GameManger : MonoBehaviour
         //    Debug.Log(Time.timeScale);
 
         //}
-        GetLeaderboard();
+        //GetLeaderboard();
         Time.timeScale = 0f;
     }
 
@@ -260,7 +260,17 @@ public class GameManger : MonoBehaviour
 
     }
 
-    
+    public void GuestBook()
+    {
+        SceneManager.LoadScene("GuestBook");
+    }
+
+    public void Cam()
+    {
+        SceneManager.LoadScene("Cam");
+    }
+
+
 }
 
 [SerializeField]
