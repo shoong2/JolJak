@@ -22,4 +22,25 @@ public class Title : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Main");
     }
+
+    public void GuestBook()
+    {
+        SceneManager.LoadScene("GuestBook");
+    }
+
+    public void Cam()
+    {
+        SceneManager.LoadScene("Cam");
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (titleAudio.isPlaying)
+                titleAudio.Stop();
+            else
+                titleAudio.Play();
+        }
+    }
 }

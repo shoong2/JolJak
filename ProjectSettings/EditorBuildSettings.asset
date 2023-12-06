@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GuestBook.unity
     guid: 6755a32b89ba7ba4c96fbdcf982be0b3
+  - enabled: 1
+    path: Assets/Scenes/Cam.unity
+    guid: 1d1484db9757f8b4a926412111b020d9
   m_configObjects: {}

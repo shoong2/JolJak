@@ -43,7 +43,10 @@ public class DrawLine : MonoBehaviour
     }
     private void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Title");
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if (state == State.erase)
